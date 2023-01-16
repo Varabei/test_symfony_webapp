@@ -1,0 +1,16 @@
+.main-layer {
+	padding: 30px;
+	margin: 20px auto;
+}
+
+.editor-table {
+	margin: 20px auto;
+}
+
+.main-page {
+	min-height: 600px;
+}
+
+.admin-link {
+	text-align: center;
+}

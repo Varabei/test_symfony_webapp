@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notifications list{% endblock %}
+
+{% block body %}
+    <div class="d-grid gap-2 d-md-flex justify-content-between align-items-center">
+        <h1 class="display-5">Notifications editor</h1>
+        <div class="d-grid gap-2 d-md-flex justify-content-end align-items-center">
+            <a href="{{ path('app_admin_notification_create') }}" class="btn btn-success" tabindex="-1" role="button">Create new</a>
+            <a href="{{ path('app') }}" class="btn btn-success" tabindex="-1" role="button">Show on page</a>
+        </div>
+    </div>
+    <table class="table border editor-table">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Text</th>
+            <th scope="col">Views</th>
+            <th scope="col">Created</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in notifications %}
+        <tr>
+            <th scope="row">{{ row.id }}</th>
+            <td>{{ row.title }}</td>
+            <td>{{ row.content }}</td>
+            <td>{{ row.views|number_format }}</td>
+            <td>{{ row.dateCreated|date("d.m.Y H:i") }}</td>
+            <td>
+                <form action="{{ path('app_admin_notification_delete', {id: row.id} ) }}" class="delete-form row g-2">
+                    <div class="col-auto"><a href="{{ path('app_admin_notification_edit', {id: row.id} ) }}" class="btn btn-primary" tabindex="-1" role="button">Edit</a></div>
+                    <div class="col-auto"><button type="submit" class="btn btn-danger">Delete</button></div>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block pagescripts %}
+<script src="{{ asset('js/admin.js') }}"></script>
+{% endblock %}

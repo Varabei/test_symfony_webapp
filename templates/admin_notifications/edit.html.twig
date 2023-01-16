@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Create new notification{% endblock %}
+
+{% block body %}
+	<div class="d-grid gap-2 d-md-flex justify-content-between align-items-center">
+		<h1 class="display-5">{% if id is defined %}Edit notification #{{ id }}{% else %}Create new notification{% endif %}</h1>
+		<ul class="nav">
+			<li class="nav-item"><a href="{{ path('app_admin_notifications') }}" class="nav-link" tabindex="-1">Go to the list</a></li>
+		</ul>
+	</div>
+	{{ form(form) }}
+{% endblock %}
