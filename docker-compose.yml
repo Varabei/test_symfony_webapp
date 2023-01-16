@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-  ###> doctrine/doctrine-bundle ###
   database:
     image: mysql
     environment:
@@ -9,20 +8,11 @@ services:
       MYSQL_PASSWORD: ${MYSQLDB_PASSWORD:-appPassword!}
       MYSQL_USER: ${MYSQLDB_USER:-app}
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    volumes:
-      - ./docker/db/data:/var/lib/mysql:rw
-    networks:
-      - app
-  ###< doctrine/doctrine-bundle ###
 
   web:
     build: .
     volumes:
       - .:/app
       - /app/vendor
-    networks:
-      - app
-
-networks:
-  app:
-    driver: bridge
+    depends_on:
+      - database

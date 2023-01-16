@@ -13,4 +13,4 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | b
 RUN apt-get install symfony-cli
 
 EXPOSE 8000
-CMD php bin/console doctrine:migrations:migrate && symfony server:start --port=8000
+CMD ["symfony", "server:start", "--port=8000"]
